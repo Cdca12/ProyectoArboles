@@ -1,3 +1,4 @@
+package proyectoarboles;
 
 /**
  *
@@ -11,6 +12,7 @@ public class Producto {
         return Rutinas.PonCeros(IdProducto, 5);
     }
     
+    // Imprime la información del Producto formateada.
     public String informacion() {
         return "IdProducto: " + IdProducto + " | Existencia: " + Existencia;
     }
