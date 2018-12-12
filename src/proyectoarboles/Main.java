@@ -47,6 +47,10 @@ public class Main {
                     }
                     break;
                 case 2: // Retirar un producto (Id producto proporcionado por teclado). Restricción la existencia debe ser igual a cero.
+                    if (arbolProductos.Length() == 0) {
+                        System.out.println("El árbol está vacío. Inserta datos primero e intentelo de nuevo.");
+                        break;
+                    }
                     System.out.println("Ingrese el Id del producto que desee retirar: ");
                     id = scanner.nextInt();
                     producto = new Producto(id);
@@ -134,7 +138,11 @@ public class Main {
                     System.out.println("Ingrese el Id del producto que desea consultar: ");
                     id = scanner.nextInt();
                     producto = new Producto(id);
-                    arbolProductos.Busca(producto);
+                    if (!arbolProductos.Busca(producto)) {
+                        System.out.println("\nEl producto no se encuentra en el árbol. No se ha impreso nada.");
+                        break;
+                    }
+//                    arbolProductos.Busca(producto);
                     consultaNodoRecorrido(arbolProductos, arbolProductos.Dr);
                     break;
                 case 10: // Consulta: niveles inferiores que tienen menos nodos que el nivel superior.
@@ -259,8 +267,8 @@ public class Main {
             nodosNivelSuperior = numeroNodosPorNivel(arbol, i+1);
             // Nivel actual es menor que nivel superior
             if (nodosNivelActual < nodosNivelSuperior ) {
-                System.out.println("El nivel actual (" + i + ") tiene menos nodos que el nivel superior (" + i+1 + "), "
-                        + "con " + nodosNivelActual + " y " + nodosNivelSuperior + " respectivamente");
+                System.out.println("El nivel " + i + " tiene menos nodos que el nivel superior, "   // TODO: Imprimir niveles
+                        + "con " + nodosNivelActual + " y " + nodosNivelSuperior + " nodos respectivamente");
             }
         }
     }
